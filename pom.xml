@@ -59,6 +59,19 @@
   
    
    <dependencies>
+
+<dependency>
+    <groupId>com.github.vbmacher</groupId>
+    <artifactId>java-cup</artifactId>
+    <version>11b-20160615-2</version>
+</dependency>
+
+<dependency>
+    <groupId>com.github.vbmacher</groupId>
+    <artifactId>java-cup-runtime</artifactId>
+    <version>11b-20160615-2</version>
+</dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
