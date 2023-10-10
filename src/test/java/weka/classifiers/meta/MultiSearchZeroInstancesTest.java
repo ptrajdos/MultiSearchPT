@@ -15,6 +15,12 @@ import weka.core.setupgenerator.MathParameter;
 import weka.tools.data.RandomDataGenerator;
 import weka.tools.tests.DistributionChecker;
 
+/**
+ * @author pawel trajdos
+ * @since 0.0.1
+ * @version 0.0.1
+ *
+ */
 public class MultiSearchZeroInstancesTest extends AbstractClassifierTest {
 
 	public MultiSearchZeroInstancesTest(String name) {
@@ -31,7 +37,7 @@ public class MultiSearchZeroInstancesTest extends AbstractClassifierTest {
 		MathParameter mParam = new MathParameter();
 		mParam.setProperty("KNN");
 		mParam.setMin(1);
-		mParam.setMax(5);
+		mParam.setMax(10);
 		mParam.setStep(1);
 		mParam.setExpression("I");
 		
@@ -50,6 +56,30 @@ public class MultiSearchZeroInstancesTest extends AbstractClassifierTest {
 	public void testNoTraininstances(){
 		 RandomDataGenerator gen = new RandomDataGenerator();
 		 gen.setNumObjects(0);
+		 Instances data = gen.generateData();
+		 
+		 Classifier cla = this.getClassifier();
+		 
+		 try {
+			cla.buildClassifier(data);
+			
+			gen.setNumObjects(10);
+			Instances data2 = gen.generateData();
+			Instance test = data2.get(0);
+			
+			double[] distribution  = cla.distributionForInstance(test);
+			assertTrue("Distribution check: ", DistributionChecker.checkDistribution(distribution));
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception has been caught: " + e.getLocalizedMessage());
+		}
+	 }
+	
+	public void testOneTraininstance(){
+		 RandomDataGenerator gen = new RandomDataGenerator();
+		 gen.setNumObjects(1);
 		 Instances data = gen.generateData();
 		 
 		 Classifier cla = this.getClassifier();

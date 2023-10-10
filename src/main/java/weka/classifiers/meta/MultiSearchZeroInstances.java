@@ -3,11 +3,8 @@
  */
 package weka.classifiers.meta;
 
-import java.util.Iterator;
-
 import weka.core.Capabilities;
 import weka.core.Instances;
-import weka.core.Capabilities.Capability;
 
 /**
  * MultiSearch Classifier that accapts empty dataset;
